@@ -1,0 +1,152 @@
+body {
+    margin:0;
+    font-family: 'Arial', sans-serif;
+    background:#111;
+    color:#fff;
+  }
+  
+  .wrap {
+    max-width:1200px;
+    margin:0 auto;
+    padding:16px;
+  }
+  
+  .header {
+    background:#1a1a1a;
+    padding:16px 0;
+    border-bottom:1px solid #333;
+    display:flex;
+    align-items:center;
+  }
+  
+  .header .title { font-size:1.6rem; font-weight:bold; }
+  .header .subtitle { font-size:0.9rem; color:#aaa; }
+  
+  .page-title {
+    text-align:center;
+    font-size:2rem;
+    margin:24px 0;
+    color:#00f5a0;
+  }
+  
+  .catalog-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+  }
+  
+  .catalog-item {
+    background:#1e1e1e;
+    border-radius:12px;
+    overflow:hidden;
+    transition:0.3s;
+    position:relative;
+  }
+  
+  .catalog-item:hover {
+    transform: translateY(-5px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.7);
+  }
+  
+  .catalog-item img {
+    width:100%;
+    height:180px;
+    object-fit:cover;
+  }
+  
+  .catalog-item .details {
+    padding:12px;
+  }
+  
+  .catalog-item h4 {
+    margin:0 0 6px;
+    font-size:1.2rem;
+  }
+  
+  .catalog-item p {
+    margin:4px 0;
+    font-size:0.9rem;
+    color:#ccc;
+  }
+  
+  .btn-contact {
+    margin-top:10px;
+    display:inline-block;
+    padding:8px 12px;
+    background:#25D366;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+  }
+  
+  .btn-contact:hover { background:#1ebe57; }
+  
+  .total-price {
+    text-align:right;
+    font-size:1.5rem;
+    font-weight:bold;
+    margin-top:24px;
+    color:#00f5a0;
+  }
+  
+  /* Floating buttons */
+  #whatsappBtn {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:#fff;
+    font-size:1.8rem;
+    padding:14px;
+    border-radius:50%;
+    text-decoration:none;
+    box-shadow:0 4px 12px rgba(0,0,0,0.6);
+    z-index:1000;
+  }
+  
+  #chatbotBtn {
+    position: fixed;
+    bottom: 20px;          /* Same as WhatsApp */
+    right: 100px;          /* Increased space so they don’t overlap */
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    animation: pulse 1.5s ease-in-out infinite;
+
+  }
+  .checkout-notice {
+    text-align: center;
+    background: linear-gradient(90deg, #00f5a0, #00d9f5);
+    color: #111;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 16px;
+    animation: floatPulse 2s ease-in-out infinite;
+    display: inline-block;
+  }
+  
+  .checkout-notice b {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  /* Smooth floating animation */
+  @keyframes floatPulse {
+    0%, 100% { transform: translateY(0); opacity:1; }
+    50% { transform: translateY(-6px); opacity:0.9; }
+  }
+  

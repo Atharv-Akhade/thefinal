@@ -1,0 +1,1132 @@
+/* === Dark Futuristic Neon Theme === */
+:root {
+  --bg1: #0f2027;       /* Deep navy */
+  --bg2: #203a43;       /* Teal-dark mix */
+  --bg3: #2c5364;       /* Blue-grey */
+  
+  --glass-bg: rgba(18, 25, 35, 0.65); 
+  --glass-border: rgba(255, 255, 255, 0.12);
+
+  --text: #eaf3ff;
+  --muted: #8fa6c3;
+
+  --accent1: #00f5a0;   /* Neon green */
+  --accent2: #00d9f5;   /* Neon cyan */
+  --accent3: #0078ff;   /* Electric blue */
+
+  --radius: 18px;
+  --shadow: 0 14px 36px rgba(0, 0, 0, 0.65);
+  --ring: 0 0 0 3px rgba(0, 245, 160, 0.35);
+}
+
+/* === Reset === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Poppins", system-ui, sans-serif;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+  min-height: 100vh;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* === Header === */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+}
+.wrap {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: url("https://marketplace.canva.com/EAGVlc0r3lc/2/0/1600w/canva-black-modern-car-auto-services-logo-2c5P0-oevTs.jpg") no-repeat center center; /* your file path */
+  background-size: cover; /* makes image fit nicely */
+  box-shadow: var(--shadow);
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.btn {
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow);
+}
+.btn:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* === Layout Grid === */
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* Left slightly wider */
+  gap: 32px;
+  padding: 40px 24px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Glass Cards === */
+.card {
+  background: var(--glass-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+.card .head {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card .body {
+  padding: 24px;
+}
+.pill {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+}
+
+/* === Form & Fields === */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+input, select {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  outline: none;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+input:focus, select:focus {
+  box-shadow: var(--ring);
+  border-color: var(--accent1);
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* === Car Grid === */
+.car-grid-wrapper {
+  position: relative;
+}
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--glass-bg);
+  border: none;
+  border-radius: 50%;
+  color: var(--text);
+  font-size: 1.4rem;
+  padding: 8px 12px;
+  cursor: pointer;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+.scroll-btn:hover {
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #fff;
+}
+.scroll-btn.left { left: -10px; }
+.scroll-btn.right { right: -10px; }
+
+.car-grid {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 16px 0;
+  scroll-behavior: smooth;
+}
+.car-grid::-webkit-scrollbar {
+  height: 8px;
+}
+.car-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  border-radius: 10px;
+}
+
+/* === Car Cards === */
+.car-card {
+  flex: 0 0 250px;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.06);
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+}
+.car-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.4);
+}
+.car-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
+.car-card h4 {
+  margin: 12px 12px 16px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.tag {
+  display: inline-block;
+  margin: 4px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.pick-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  color: var(--text);
+  cursor: pointer;
+  transition: 0.25s;
+  backdrop-filter: blur(8px);
+}
+.pick-btn.active, .pick-btn:hover {
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #fff;
+  border: none;
+}
+
+/* === Comparison Section === */
+.weights {
+  display: grid;
+  gap: 18px;
+}
+.w-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 40px;
+  gap: 12px;
+  align-items: center;
+}
+input[type="range"] {
+  accent-color: var(--accent2);
+  cursor: pointer;
+}
+.hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.suggest {
+  margin-top: 22px;
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+/* === Footer === */
+footer {
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+
+.lightbox-img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+/* === Search Button Styling === */
+#searchBtn {
+  background: linear-gradient(135deg, var(--accent1), var(--accent2), var(--accent3));
+  color: #fff;
+  padding: 12px 26px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 18px rgba(0, 217, 245, 0.45);
+  transition: all 0.3s ease;
+  margin-left: 8px; /* keeps spacing from input */
+}
+
+#searchBtn:hover {
+  transform: scale(1.07) translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 217, 245, 0.55);
+  filter: brightness(1.15);
+}
+
+#searchBtn:active {
+  transform: scale(0.95) translateY(1px);
+  box-shadow: 0 4px 12px rgba(0, 217, 245, 0.4);
+}
+/* === Align Fuel + Budget in one row === */
+.filters-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.filters-row .field {
+  flex: 1; /* makes both take equal width */
+}
+
+/* === Adjust Car Grid Wrapper === */
+.car-grid-wrapper {
+  position: relative;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.car-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 12px;
+  scroll-behavior: smooth;
+}
+
+.car-card {
+  flex: 0 0 280px;  /* slightly wider cards */
+  max-width: 280px;
+}
+.filters-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.filters-row .field {
+  flex: 1; /* equal width */
+}
+.car-card img {
+  width: 100%;
+  height: 200px;              /* fixed height for all */
+  object-fit: cover;          /* crop instead of stretch */
+  border-radius: 16px 16px 0 0;
+  display: block;
+}
+.suggest-img {
+  max-width: 250px;   /* adjust as per layout */
+  max-height: 180px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.suggest-img:hover {
+  transform: scale(1.05);
+}
+
+/* === Fix Select Dropdown Styling === */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--text);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: 0.25s;
+}
+
+select:focus {
+  border-color: var(--accent1);
+  box-shadow: var(--ring);
+}
+
+/* Style dropdown options */
+select option {
+  background: var(--bg2);
+  color: var(--text);
+  padding: 12px;
+  border: none;
+}
+
+/* Hover effect for options */
+select option:hover {
+  background: var(--accent3);
+  color: #fff;
+}
+
+footer {
+  background-color: #1f2a36; /* Dark background for contrast */
+  color: #fff; /* White text */
+  padding: 20px 10px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+footer a {
+  color: #fff; /* White links */
+  text-decoration: none;
+  margin: 0 8px;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #ff9800; /* Highlight on hover */
+}
+
+footer p {
+  display: inline; /* Make paragraph inline to align with links */
+  margin: 0 8px;
+}
+
+footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 20px 10px;
+  font-family: sans-serif;
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  font-size: 0.9em;
+  color: #ccc;
+  margin-top: 10px;
+}
+.social-icons img {
+  width: 30px;   /* Set desired width */
+  height: 30px;  /* Set desired height */
+  object-fit: contain; /* Keeps aspect ratio */
+  transition: transform 0.3s;
+}
+
+/* Modal container (hidden by default) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Sit on top of the page */
+  z-index: 1000; /* Make sure it’s on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
+}
+
+/* Modal content box */
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto; /* 10% from top, centered horizontally */
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  max-width: 90%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Close button */
+.modal-content .close {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  color: #aaa;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-content .close:hover {
+  color: #000;
+}
+
+/* Optional: input fields and button styling */
+#authForm input {
+  width: 100%;
+  padding: 8px 10px;
+  margin: 5px 0 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#authBtn {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#authBtn:hover {
+  background-color: #45a049;
+}
+
+/* Simple fade-in animation */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+/* Buy button style */
+.buy-btn {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg,#00f5a0,#00d9f5);
+  color: #012426;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s;
+}
+.buy-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,217,245,0.15); }
+.suggest-img { cursor: pointer; }
+.remove-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.remove-btn:hover {
+  background: #e60000;
+}
+.role-bar {
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+
+
+  
+/* --- Buy Now Button --- */
+.btn-buy {
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00f5a0, #00d9f5);
+  color: #000;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 245, 160, 0.5);
+}
+
+/* --- Remove Button (❌) --- */
+.remove-btn {
+  background: #197548;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.remove-btn:hover {
+  background: #38c2c7;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(230,0,0,0.5);
+}
+
+/* Optional: Align buttons horizontally nicely inside catalog item */
+.catalog-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: rgba(255,255,255,0.02);
+  padding: 10px;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+
+.catalog-item div {
+  flex: 1;
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin: 15px auto;
+  width: fit-content;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Navbar links */
+.navbar a,
+.navbar button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(135deg, #00b09b, #96c93d);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect */
+.navbar a:hover,
+.navbar button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  opacity: 0.95;
+}
+
+/* Active / highlight */
+#authBtn {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+
+#logoutBtn {
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+}
+
+/* Hide default button styles */
+.navbar button {
+  outline: none;
+}
+
+/* ===== Modal Background ===== */
+.modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ===== Modal Box ===== */
+/* ===== Modal Background (Full Screen Overlay) ===== */
+.modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  inset: 0; /* shorthand for top:0; left:0; right:0; bottom:0 */
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+
+  z-index: 9999; /* ensure it’s above header */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: fadeIn 0.3s ease;
+}
+
+
+/* ===== Close Button ===== */
+.modal-content .close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.modal-content .close:hover {
+  transform: rotate(90deg);
+  color: #ff4b2b;
+}
+
+/* ===== Tabs (Login / Register) ===== */
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tab-link {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  color: #555;
+}
+
+.tab-link.active {
+  color: #00b09b;
+  border-bottom: 3px solid #00b09b;
+}
+
+/* ===== Form Content ===== */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-content h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Inputs */
+.tab-content input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.tab-content input:focus {
+  border-color: #00b09b;
+  box-shadow: 0 0 8px rgba(0, 176, 155, 0.3);
+}
+
+/* Buttons */
+.tab-content button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #00b09b, #96c93d);
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+
+.tab-content button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slideUp {
+  from {transform: translateY(50px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+/* Container for header actions */
+.hdr-actions {
+  position: absolute; /* positions relative to nearest positioned ancestor */
+  top: 20px;          /* distance from top */
+  right: 20px;        /* distance from right */
+  display: flex;
+  flex-direction: column; /* stack buttons vertically */
+  gap: 12px;             /* spacing between buttons */
+  z-index: 1000;         /* make sure it appears above other elements */
+}
+
+/* Common button styling */
+.hdr-actions button {
+  width: 180px;       /* optional: fix width for uniformity */
+  text-align: center;
+}
+
+/* Add Car Button specific hover effects already inline,
+ but you can move them here for cleaner code */
+#openAddCarBtn {
+  background: linear-gradient(135deg, #00f5a0, #00d9f5); 
+  border: none; 
+  border-radius: 12px; 
+  padding: 12px 20px; 
+  color: #fff; 
+  font-weight: 600; 
+  cursor: pointer; 
+  box-shadow: 0 14px 36px rgba(0,0,0,0.65); 
+  transition: all 0.25s ease;
+}
+
+#openAddCarBtn:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+#openAddCarBtn:active {
+  transform: translateY(1px);
+}
+
+/* AI Car Advisor Button styling (optional) */
+.hdr-actions .btn {
+  background: #0bc7b1;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  padding: 12px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  transition: all 0.25s ease;
+}
+
+.hdr-actions .btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.hdr-actions .btn:active {
+  transform: translateY(1px);
+}
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* space between left links and right buttons */
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #111; /* adjust as needed */
+  color: #fff;
+  position: relative;
+  z-index: 900;
+}
+
+/* Left-side links */
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 16px;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.navbar a:hover {
+  color: #0bc7b1; /* highlight on hover */
+}
+
+/* Right-side buttons container */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* spacing between buttons */
+}
+
+/* Login / Register & Logout buttons */
+.navbar-right button {
+  background: linear-gradient(135deg, #0bc7b1, #00d9f5);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(10, 48, 31, 0.4);
+  transition: all 0.25s ease;
+  justify-content: flex-end;
+}
+
+.navbar-right button:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.navbar-right button:active {
+  transform: translateY(1px);
+}
+
+
+/* Navbar container styling */
+.navbar {
+  display: flex;
+  justify-content:end; /* Left links left, right buttons right */
+  align-items: center;
+  padding: 12px 24px;
+  
+  /* Background color */
+  background-color: #74cfbc; /* change this to any color you like */
+  
+  /* Move container (center it and add some spacing from top) */
+  margin: 20px auto; /* top/bottom margin 20px, horizontally centered */
+  width: 20%; /* width of navbar container */
+  
+  border-radius: 5px;
+  box-shadow: 0 6px 20px rgba(81, 168, 123, 0.3);
+  right: 10px;
+  left: 240px;
+}
+
+/* Left links styling */
+.navbar-left a {
+  margin-right: 16px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Right buttons styling */
+.navbar-right button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00f5a0, #00d9f5);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: all 0.25s ease;
+}
+
+.navbar-right button:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+/* AI Suggestion Container */
+#suggestBox {
+  display: block; /* show/hide via JS */
+  background-color: #408d89; /* light neutral background */
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 900px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+/* Title */
+#suggestBox h3 {
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+  color: #1a1a1a;
+  border-bottom: 2px solid #0bc7b1;
+  padding-bottom: 5px;
+}
+
+/* Hint / explanation */
+#suggestWhy {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Bullet list */
+.why-list {
+  list-style-type: disc;
+  padding-left: 25px;
+  margin-bottom: 20px;
+}
+
+.why-list li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* Gallery for images */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.gallery img {
+  width: calc(33.33% - 10px); /* 3 images per row with gap */
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Suggestion details section */
+.details {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #444;
+  background-color: #fdffff;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #0bc7b1;
+}
+/* Cancel Selection Button */
+.cancel-selection-wrapper {
+  text-align: center;
+  margin-top: 15px;
+}
+
+#cancelSelectionBtn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  transition: all 0.25s ease;
+}
+
+#cancelSelectionBtn:hover {
+  background: #ff1a1a;
+  transform: translateY(-2px);
+}

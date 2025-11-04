@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Purchase — AI Car Comparison</title>
+<link rel="stylesheet" href="one.css">
+<style>
+.purchase-wrap { max-width: 900px; margin: 36px auto; padding: 20px; background: rgba(255,255,255,0.03); border-radius:12px; }
+.purchase-card { display:flex; gap:20px; align-items:flex-start; margin-bottom:20px; }
+.purchase-card img { width:320px; height:200px; object-fit:cover; border-radius:10px; }
+.breakdown { margin-left:auto; min-width:260px; background:rgba(0,0,0,0.06); padding:12px; border-radius:8px; }
+.catalog-list { margin-top:20px; display:grid; gap:12px; }
+.catalog-item { display:flex; gap:12px; align-items:center; background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; }
+.catalog-item img { width:80px; height:60px; object-fit:cover; border-radius:8px; }
+.btn { padding:10px 14px; border-radius:10px; background:linear-gradient(90deg,#00f5a0,#00d9f5); color:#000; border:none; cursor:pointer; font-weight:600; }
+.btn-buy {
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00f5a0, #00d9f5);
+  color: #000;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 245, 160, 0.5);
+}
+
+/* --- Remove Button (❌) --- */
+.remove-btn {
+  background: #197548;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.remove-btn:hover {
+  background: #38c2c7;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(230,0,0,0.5);
+}
+
+/* Optional: Align buttons horizontally nicely inside catalog item */
+.catalog-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: rgba(255,255,255,0.02);
+  padding: 10px;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+
+.catalog-item div {
+  flex: 1;
+}
+
+</style>
+</head>
+<body>
+<header class="wrap header-flex" style="margin-bottom:12px;">
+<div class="brand">
+<div class="logo"></div>
+<div>
+<div class="title">AI Car Comparison</div>
+<div class="subtitle">Purchase</div>
+</div>
+</div>
+</header>
+
+<main class="wrap">
+<div class="purchase-wrap" id="purchaseWrap">
+  <h2>Purchase Details</h2>
+  <div id="purchaseArea">Loading...</div>
+
+  <h3 style="margin-top:18px">Your Catalog (Local)</h3>
+  <div id="catalogList" class="catalog-list"></div>
+
+  <!-- Checkout Button -->
+  <div style="margin-top:20px; text-align:right;">
+    <button id="checkoutBtn" class="btn">Checkout Selected Cars</button>
+  </div>
+</div>
+</main>
+
+<footer style="margin-top:40px;text-align:center;padding:20px;color:#aaa">
+© Driving Innovation • AI Car Comparison
+</footer>
+
+<script src="purchase.js"></script>
+</body>
+</html>

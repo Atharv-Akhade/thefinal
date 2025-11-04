@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Car Comparison — Smart Suggestions</title>
+  <link rel="stylesheet" href="one.css">
+</head>
+<body>
+  <header>
+    
+    <div class="wrap header-flex">
+      <div class="brand">
+        <div class="logo"></div>
+       
+        <div>
+          <div class="title">AI Car Comparison</div>
+          <div class="subtitle">Smart suggestions • JSON powered</div>
+        </div>
+      </div>
+      <div class="hdr-actions">
+        
+        
+        <!-- Added Button to Open Add Car Modal -->
+        
+       
+  <!-- Add Car Button -->
+  <button id="openAddCarBtn"
+          style="background: linear-gradient(135deg, #00f5a0, #00d9f5); 
+                 border: none; 
+                 border-radius: 12px; 
+                 padding: 12px 20px; 
+                 color: #fff; 
+                 font-weight: 600; 
+                 cursor: pointer; 
+                 margin-right: 12px; 
+                 box-shadow: 0 14px 36px rgba(0,0,0,0.65); 
+                 transition: all 0.25s ease;"
+          onmouseover="this.style.filter='brightness(1.15)'; this.style.transform='translateY(-2px)';"
+          onmouseout="this.style.filter='brightness(1)'; this.style.transform='translateY(0)';"
+          onmousedown="this.style.transform='translateY(1px)';"
+          onmouseup="this.style.transform='translateY(-2px)';">
+    Add a New Car
+  </button>
+        <button class="btn" onclick="openChatbot()">AI Car Advisor</button>
+        
+      </div>
+        
+     <!-- Navbar -->
+     <nav class="navbar">
+      <!-- Left side links -->
+      <div class="navbar-left">
+          <a href="index.html">Home</a>
+          <a href="purchase.html" id="myCatalogLink" style="display:none;">My Catalog</a>
+      </div>
+  
+      <!-- Right side buttons -->
+      <div class="navbar-right">
+          <button id="authBtn">Login / Register</button>
+          <button id="logoutBtn" style="display:none;">Logout</button>
+      </div>
+  </nav>
+  
+
+  <!-- Popup Modal -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-link active" onclick="switchTab('login')">Login</button>
+        <button class="tab-link" onclick="switchTab('register')">Register</button>
+      </div>
+
+      <!-- Login Form -->
+      <div id="loginForm" class="tab-content active">
+        <h3>Login</h3>
+        <input type="text" id="loginUser" placeholder="Username">
+        <input type="password" id="loginPass" placeholder="Password">
+        <button onclick="loginUser()">Login</button>
+      </div>
+
+      <!-- Register Form -->
+      <div id="registerForm" class="tab-content">
+        <h3>Register</h3>
+        <input type="text" id="regUser" placeholder="Username">
+        <input type="password" id="regPass" placeholder="Password">
+        <button onclick="registerUser()">Register</button>
+      </div>
+    </div>
+  </div>   
+        
+  </header>
+<!-- Add Car Modal -->
+<div id="addCarModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" id="closeAddCar">&times;</span>
+    <h2>Add Your Car</h2>
+    <form id="addCarForm">
+      <input type="text" id="company" placeholder="Company Name" required>
+      <input type="text" id="carName" placeholder="Car Name" required>
+      <input type="text" id="price" placeholder="Car Price" required>
+      <input type="text" id="fuelType" placeholder="Fuel Type" required>
+      <input type="number" id="seats" placeholder="Seats" required>
+     
+      <input type="number" id="safety" placeholder="Safety Rating" required>
+      <input type="url" id="image" placeholder="Image URL" required>
+      <button type="submit">Add Car</button>
+    </form>
+  </div>
+</div>
+  <main class="grid wrap">
+    <!-- Left: Filters + Catalog -->
+    <section class="card">
+      <div class="head">
+        <strong>Browse Cars</strong>
+        <span class="pill" id="countPill">0 selected</span>
+      </div>
+
+      <div class="body">
+        <div class="field">
+          <label>Search</label>
+          <input type="text" id="q" placeholder="Search cars...">
+          <button id="searchBtn">Search</button>
+        </div>
+
+       <div class="filters-row">
+          <div class="field">
+            <label>Fuel Type</label>
+            <select id="fuel">
+              <option value="all">All</option>
+              <option>Petrol</option>
+              <option>Diesel</option>
+              <option>Hybrid</option>
+              <option>Electric</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Budget (₹)</label>
+            <input id="priceMax" type="number" placeholder="Max price"/>
+          </div>
+        </div>
+
+        <div class="car-grid-wrapper">
+          <button class="scroll-btn left" onclick="scrollCars(-1)">◀</button>
+          <div class="car-grid" id="carGrid"></div>
+          <button class="scroll-btn right" onclick="scrollCars(1)">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+    </section>
+
+    <!-- Right: Comparison + AI Suggestion -->
+    <section class="card">
+      <div class="head">
+        <strong>Compare & Get AI Suggestion</strong>
+        <span class="pill">Pick up to 3 cars</span>
+      </div>
+
+      <div class="body compare-wrap">
+        <div class="card compare-card">
+          <div class="body">
+            <div class="weights">
+              <div class="w-row">
+                <span>Safety</span>
+                <input type="range" id="wSafety" min="0" max="100" value="40">
+                <span id="wSafetyVal"></span>
+              </div>
+              <div class="w-row">
+                <span>Mileage</span>
+                <input type="range" id="wMileage" min="0" max="100" value="30">
+                <span id="wMileageVal"></span>
+              </div>
+              <div class="w-row">
+                <span>Performance</span>
+                <input type="range" id="wPerf" min="0" max="100" value="20">
+                <span id="wPerfVal"></span>
+              </div>
+              <div class="w-row">
+                <span>Price (lower is better)</span>
+                <input type="range" id="wPrice" min="0" max="100" value="10">
+                <span id="wPriceVal"></span>
+              </div>
+            </div>
+            <div class="hint" style="margin-top:8px">
+              Weights auto-normalize to 100%. Adjust to reflect your priority.
+            </div>
+          </div>
+        </div>
+
+        <button class="btn" id="compareBtn">Compare Now</button>
+        <div id="compareArea"></div>
+
+        <!-- AI Suggestion -->
+        <div id="suggestBox" class="suggest" style="display:none">
+          <h3 id="suggestTitle">AI Suggestion</h3>
+          <div id="suggestWhy" class="hint"></div>
+          <ul id="suggestBullets" class="why-list"></ul>
+          <div id="gallery" class="gallery"></div>
+          <div id="suggestDetails" class="details"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- List of cars -->
+  <ul id="adminCarList" style="list-style:none;padding:0;"></ul>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-links">
+        <a href="aboutus.html" target="_blank">About Us</a>
+        <a href="terms.html" target="_blank">Terms & Conditions</a>
+        <a href="legal.html" target="_blank">Agreement & Privacy Policy</a>
+        <a href="contact.html" target="_blank">Contact Us</a>
+      </div>
+      <div class="social-icons">
+        <a href="https://instagram.com" target="_blank">
+          <img src="instagram.png" alt="Instagram" />
+        </a>
+        <a href="https://youtube.com" target="_blank">
+          <img src="youtube.png" alt="YouTube" />
+        </a>
+        <a href="https://twitter.com" target="_blank">
+          <img src="twitter.png" alt="Twitter" />
+        </a>
+        <a href="https://play.google.com/store" target="_blank">
+          <img src="play.png" alt="Download on Play Store" />
+        </a>
+        <a href="purchase.html" class="myCatalogLink" style="display:none;">My Catalog</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © Driving Innovation • AI Car Comparison for Smarter Decisions
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <script src="one.js"></script>
+  <script src="purchase.js"></script>
+
+  <!-- Chatbot Popup -->
+  <div id="chatbotBox" style="display:none;position:fixed;bottom:20px;right:20px;width:320px;height:420px;background:#2d2a2a;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.3);overflow:hidden;z-index:9999;flex-direction:column;">
+    <div style="background:#0bc7b1;padding:10px;color:#2f2d2d;font-weight:600;display:flex;justify-content:space-between;align-items:center;">
+      <span>AI Car Advisor</span>
+      <button onclick="closeChatbot()" style="border:none;background:none;font-size:18px;cursor:pointer;">✖</button>
+    </div>
+    <div id="chatContent" style="flex:1;padding:10px;overflow-y:auto;font-size:14px;"></div>
+    <div style="display:flex;border-top:1px solid #161212;">
+      <input id="chatInput" type="text" placeholder="Ask about cars..." style="flex:1;border:none;padding:10px;font-size:14px;outline:none;">
+      <button onclick="sendChat()" style="padding:10px 14px;background:#00d9f5;border:none;cursor:pointer;">Send</button>
+    </div>
+  </div>
+
+
+  <script>
+  
+    
+    
+    
+    
+
+
+  
+  
+
+  // Add Car Modal functionality
+  const addCarModal = document.getElementById("addCarModal");
+  const openAddCarBtn = document.getElementById("openAddCarBtn");
+  const closeAddCar = document.getElementById("closeAddCar");
+  const addCarForm = document.getElementById("addCarForm");
+
+  openAddCarBtn.addEventListener("click", () => {
+    addCarModal.style.display = "block";
+  });
+
+  closeAddCar.addEventListener("click", () => {
+    addCarModal.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === addCarModal) {
+      addCarModal.style.display = "none";
+    }
+  });
+
+  addCarForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("Car added successfully!");
+    addCarModal.style.display = "none";
+    addCarForm.reset();
+  });
+</script>
+
+</body>
+</html>
+
+
+
+
